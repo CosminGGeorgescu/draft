@@ -1282,9 +1282,11 @@ template<class T1, class T2, class U1, class U2>
 
 \begin{itemdescr}
 \pnum
-\expects
-Each of \tcode{decltype(x.first == y.first)} and
-\tcode{decltype(x.second == y.second)} models \exposconcept{boolean-testable}.
+\constraints
+\tcode{x.first == y.first} and \tcode{x.second == y.second} are
+valid expressions and
+each of \tcode{decltype(x.first == y.first)} and
+\tcode{decltype(x.second == y.second)} models \exposconceptx{boolean-\newline testable}{boolean-testable}.
 
 \pnum
 \returns
@@ -2929,17 +2931,13 @@ template<class... TTypes, @\exposconcept{tuple-like}@ UTuple>
 For the first overload let \tcode{UTuple} be \tcode{tuple<UTypes...>}.
 
 \pnum
-\mandates
+\constraints
 For all \tcode{i},
 where $0 \leq \tcode{i} < \tcode{sizeof...(TTypes)}$,
-\tcode{get<i>(t) == get<i>(u)} is a valid expression.
+\tcode{get<i>(t) == get<i>(u)} is a valid expression and
+\tcode{decltype(get<i>(t) == get<i>(u))} models \exposconcept{boolean-testable}.
 \tcode{sizeof...(TTypes)} equals
 \tcode{tuple_size_v<UTuple>}.
-
-\pnum
-\expects
-For all \tcode{i}, \tcode{decltype(get<i>(t) == get<i>(u))} models
-\exposconcept{boolean-testable}.
 
 \pnum
 \returns
@@ -4393,7 +4391,7 @@ template<class T, class U> constexpr bool operator==(const optional<T>& x, const
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{*x == *y} is well-formed and
 its result is convertible to \tcode{bool}.
 \begin{note}
@@ -4418,7 +4416,7 @@ template<class T, class U> constexpr bool operator!=(const optional<T>& x, const
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{*x != *y} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4442,7 +4440,7 @@ template<class T, class U> constexpr bool operator<(const optional<T>& x, const 
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 \tcode{*x < *y} is well-formed
 and its result is convertible to \tcode{bool}.
 
@@ -4466,7 +4464,7 @@ template<class T, class U> constexpr bool operator>(const optional<T>& x, const 
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{*x > *y} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4490,7 +4488,7 @@ template<class T, class U> constexpr bool operator<=(const optional<T>& x, const
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{*x <= *y} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4514,7 +4512,7 @@ template<class T, class U> constexpr bool operator>=(const optional<T>& x, const
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{*x >= *y} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4583,7 +4581,7 @@ template<class T, class U> constexpr bool operator==(const optional<T>& x, const
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{*x == v} is well-formed and
 its result is convertible to \tcode{bool}.
 \begin{note}
@@ -4602,7 +4600,7 @@ template<class T, class U> constexpr bool operator==(const T& v, const optional<
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{v == *x} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4618,7 +4616,7 @@ template<class T, class U> constexpr bool operator!=(const optional<T>& x, const
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{*x != v} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4634,7 +4632,7 @@ template<class T, class U> constexpr bool operator!=(const T& v, const optional<
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{v != *x} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4650,7 +4648,7 @@ template<class T, class U> constexpr bool operator<(const optional<T>& x, const 
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{*x < v} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4666,7 +4664,7 @@ template<class T, class U> constexpr bool operator<(const T& v, const optional<U
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{v < *x} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4682,7 +4680,7 @@ template<class T, class U> constexpr bool operator>(const optional<T>& x, const 
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{*x > v} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4698,7 +4696,7 @@ template<class T, class U> constexpr bool operator>(const T& v, const optional<U
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{v > *x} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4714,7 +4712,7 @@ template<class T, class U> constexpr bool operator<=(const optional<T>& x, const
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{*x <= v} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4730,7 +4728,7 @@ template<class T, class U> constexpr bool operator<=(const T& v, const optional<
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{v <= *x} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4746,7 +4744,7 @@ template<class T, class U> constexpr bool operator>=(const optional<T>& x, const
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{*x >= v} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -4762,7 +4760,7 @@ template<class T, class U> constexpr bool operator>=(const T& v, const optional<
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 The expression \tcode{v >= *x} is well-formed and
 its result is convertible to \tcode{bool}.
 
@@ -5985,7 +5983,7 @@ template<class... Types>
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 \tcode{\exposid{GET}<$i$>(v) == \exposid{GET}<$i$>(w)} is a valid expression that is
 convertible to \tcode{bool}, for all $i$.
 
@@ -6004,7 +6002,7 @@ template<class... Types>
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 \tcode{\exposid{GET}<$i$>(v) != \exposid{GET}<$i$>(w)} is a valid expression that is
 convertible to \tcode{bool}, for all $i$.
 
@@ -6023,7 +6021,7 @@ template<class... Types>
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 \tcode{\exposid{GET}<$i$>(v) < \exposid{GET}<$i$>(w)} is a valid expression that is
 convertible to \tcode{bool}, for all $i$.
 
@@ -6044,7 +6042,7 @@ template<class... Types>
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 \tcode{\exposid{GET}<$i$>(v) > \exposid{GET}<$i$>(w)} is a valid expression that is
 convertible to \tcode{bool}, for all $i$.
 
@@ -6065,7 +6063,7 @@ template<class... Types>
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 \tcode{\exposid{GET}<$i$>(v) <= \exposid{GET}<$i$>(w)} is a valid expression that is
 convertible to \tcode{bool}, for all $i$.
 
@@ -6086,7 +6084,7 @@ template<class... Types>
 
 \begin{itemdescr}
 \pnum
-\mandates
+\constraints
 \tcode{\exposid{GET}<$i$>(v) >= \exposid{GET}<$i$>(w)} is a valid expression that is
 convertible to \tcode{bool}, for all $i$.
 
@@ -10993,6 +10991,16 @@ namespace std {
     template<class... ArgTypes>
       constexpr invoke_result_t<T&, ArgTypes...> operator()(ArgTypes&&...) const
         noexcept(is_nothrow_invocable_v<T&, ArgTypes...>);
+
+    // \ref{refwrap.comparisons}, comparisons
+    friend constexpr bool operator==(reference_wrapper, reference_wrapper);
+    friend constexpr bool operator==(reference_wrapper, const T&);
+    friend constexpr bool operator==(reference_wrapper, reference_wrapper<const T>);
+
+    friend constexpr @\exposid{synth-three-way-result}@<T> operator<=>(reference_wrapper, reference_wrapper);
+    friend constexpr @\exposid{synth-three-way-result}@<T> operator<=>(reference_wrapper, const T&);
+    friend constexpr @\exposid{synth-three-way-result}@<T> operator<=>(reference_wrapper,
+                                                           reference_wrapper<const T>);
   };
 
   template<class T>
@@ -11011,6 +11019,12 @@ a trivially copyable type\iref{term.trivially.copyable.type}.
 \pnum
 The template parameter \tcode{T} of \tcode{reference_wrapper}
 may be an incomplete type.
+\begin{note}
+Using the comparison operators described in subclause \ref{refwrap.comparisons}
+with \tcode{T} being an incomplete type
+can lead to an ill-formed program
+with no diagnostic required\iref{temp.point,temp.constr.atomic}.
+\end{note}
 
 \rSec3[refwrap.const]{Constructors}
 
@@ -11114,6 +11128,88 @@ template<class... ArgTypes>
 \tcode{\placeholdernc{INVOKE}(get(), std::forward<ArgTypes>(args)...)}.\iref{func.require}
 \end{itemdescr}
 
+\rSec3[refwrap.comparisons]{Comparisons}
+
+\begin{itemdecl}
+friend constexpr bool operator==(reference_wrapper x, reference_wrapper y);
+\end{itemdecl}
+
+\begin{itemdescr}
+\pnum
+\constraints
+The expression \tcode{x.get() == y.get()} is well-formed and
+its result is convertible to \tcode{bool}.
+
+\pnum
+\returns
+\tcode{x.get() == y.get()}.
+\end{itemdescr}
+
+\begin{itemdecl}
+friend constexpr bool operator==(reference_wrapper x, const T& y);
+\end{itemdecl}
+
+\begin{itemdescr}
+\pnum
+\constraints
+The expression \tcode{x.get() == y} is well-formed and
+its result is convertible to \tcode{bool}.
+
+\pnum
+\returns
+\tcode{x.get() == y}.
+\end{itemdescr}
+
+\begin{itemdecl}
+friend constexpr bool operator==(reference_wrapper x, reference_wrapper<const T> y);
+\end{itemdecl}
+
+\begin{itemdescr}
+\pnum
+\constraints
+\tcode{is_const_v<T>} is \tcode{false} and
+the expression \tcode{x.get() == y.get()} is well-formed and
+its result is convertible to \tcode{bool}.
+
+\pnum
+\returns
+\tcode{x.get() == y.get()}.
+\end{itemdescr}
+
+\begin{itemdecl}
+friend constexpr @\exposid{synth-three-way-result}@<T> operator<=>(reference_wrapper x, reference_wrapper y);
+\end{itemdecl}
+
+\begin{itemdescr}
+\pnum
+\returns
+\tcode{\exposid{synth-three-way}(x.get(), y.get())}.
+\end{itemdescr}
+
+\begin{itemdecl}
+friend constexpr @\exposid{synth-three-way-result}@<T> operator<=>(reference_wrapper x, const T& y);
+\end{itemdecl}
+
+\begin{itemdescr}
+\pnum
+\returns
+\tcode{\exposid{synth-three-way}(x.get(), y)}.
+\end{itemdescr}
+
+\begin{itemdecl}
+friend constexpr @\exposid{synth-three-way-result}@<T> operator<=>(reference_wrapper x,
+                                                       reference_wrapper<const T> y);
+\end{itemdecl}
+
+\begin{itemdescr}
+\pnum
+\constraints
+\tcode{is_const_v<T>} is \tcode{false}.
+
+\pnum
+\returns
+\tcode{\exposid{synth-three-way}(x.get(), y.get())}.
+\end{itemdescr}
 
 \rSec3[refwrap.helpers]{Helper functions}
 
