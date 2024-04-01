@@ -13360,7 +13360,7 @@ namespace std::filesystem {
 }
 
 namespace std {
-  // \ref{fs.path.fmtr}, formatter support
+  // \ref{fs.path.fmtr}, formatting support
   template<class charT> struct formatter<filesystem::path, charT>;
 
   // \ref{fs.path.hash}, hash support
@@ -15318,9 +15318,9 @@ friend path operator/(const path& lhs, const path& rhs);
 Equivalent to: \tcode{return path(lhs) /= rhs;}
 \end{itemdescr}
 
-\rSec3[fs.path.fmtr]{Formatter support}
+\rSec3[fs.path.fmtr]{Formatting support}
 
-\rSec4[fs.path.fmtr.general]{Formatter support overview}
+\rSec4[fs.path.fmtr.general]{Formatting support overview}
 
 \indexlibraryglobal{formatter}%
 \begin{codeblock}
@@ -15347,7 +15347,7 @@ are described in \ref{format.string}.
 If the \tcode{?} option is used then
 the path is formatted as an escaped string\iref{format.string.escaped}.
 
-\rSec4[fs.path.fmtr.funcs]{Formatter support functions}
+\rSec4[fs.path.fmtr.funcs]{Formatting support functions}
 
 \indexlibrarymember{formatter}{set_debug_format}%
 \begin{itemdecl}
